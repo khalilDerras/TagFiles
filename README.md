@@ -1,11 +1,18 @@
 # TagFiles
 Tagging Files System in Linux
+
 Marquer un fichier avec un tag :
+
 ./main -t file tag
+
 ● Effacer un tag d'un fichier :
+
 ./main -t file tag
+
 ● Lister les tags d'un fichier :
-./main -l file 
+
+./main -l file
+
 4
 ● Lister les fichiers possédant une combinaison de tags :
 ./main -re répertoire
