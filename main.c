@@ -162,6 +162,10 @@ int exist(int i, int* tab,int len){
 }
 void ListerFichiersDir(char* dir,char* tags)
 {
+        char* directory = malloc(1000);
+        char* directory2 = malloc(1000);
+        strcpy(directory,dir);
+        strcpy(directory2,directory);
     if(check(tags)){
         DIR *mydir;
         int tab[1000];
@@ -171,12 +175,15 @@ void ListerFichiersDir(char* dir,char* tags)
         int result;
         while((myfile = readdir(mydir)) != NULL)
         {
+        directory = malloc(1000);
+        strcpy(directory,directory2);
+        char* rech = strcat(strcat(directory,"/"),myfile->d_name);
         if(strcmp(myfile->d_name,".") && strcmp(myfile->d_name,"..")){
             struct stat s;
-            result = stat(myfile->d_name, &s); //result 0
+            result = stat(rech, &s); //result 0
             if(!exist(s.st_ino,tab,p)) {
-                tab[p++] = s.st_ino;
-                    if(filter(myfile->d_name,tags)){
+                    tab[p++] = s.st_ino;
+                    if(filter(rech,tags)){
                         printf(" %s\n", myfile->d_name);
                     }
                 }
